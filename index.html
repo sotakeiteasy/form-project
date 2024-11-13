@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+
+        /* 1. Use a more-intuitive box-sizing model */
+        *, *::before, *::after {
+        box-sizing: border-box;
+        }
+        /* 2. Remove default margin */
+        * {
+        margin: 0;
+        }
+        body {
+        /* 3. Add accessible line-height */
+        line-height: 1.5;
+        /* 4. Improve text rendering */
+        -webkit-font-smoothing: antialiased;
+        }
+        /* 5. Improve media defaults */
+        img, picture, video, canvas, svg {
+        display: block;
+        max-width: 100%;
+        }
+        /* 6. Inherit fonts for form controls */
+        input, button, textarea, select {
+        font: inherit;
+        }
+        /* 7. Avoid text overflows */
+        p, h1, h2, h3, h4, h5, h6 {
+        overflow-wrap: break-word;
+        }
+        /* 8. Improve line wrapping */
+        p {
+        text-wrap: pretty;
+        }
+        h1, h2, h3, h4, h5, h6 {
+        text-wrap: balance;
+        }
+        /*
+        9. Create a root stacking context
+        */
+        #root, #__next {
+        isolation: isolate;
+        }
+
+
+
+
+
+        /* body {
+            font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        } */
+
+        @font-face {
+            font-family: Norse;
+            src: url(Norse-Bold.woff2);
+        }
+
+        @font-face {
+            font-family: geist-medium;
+            src: url(geist-medium-webfont.woff2);
+        }
+
+        @font-face {
+            font-family: geist;
+            src: url(geist-regular-webfont.woff2);
+        }
+
+
+        
+
+
+        .container {
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+        }
+
+        .leftBlock {
+            width: 35%; /* Ширина изображения – треть контейнера */
+            height: auto;
+            position: relative;
+            display: inline-block; 
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 10px; 
+            color: black; /* Цвет текста */
+            font-size: 14px; /* Размер шрифта */
+            left: 40%; /* Центрирование по горизонтали */
+            transform: translateX(-40%); /* Сдвиг на 50% своей ширины для точного центрирования */
+        }
+
+        #logoBlock {
+            position: absolute;
+            top: 200px; 
+            color: white; 
+            font-family: Norse, sans-serif;
+            font-size: 80px; 
+            background-color: black;
+            height: 140px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.3); 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        #logo{
+            color: white;
+            height: 120px;
+        }
+
+        .rightBlock {
+            display: flex;
+            flex-direction: column; 
+            flex: 1;
+            width: auto;
+            height: auto;
+        }
+
+        .block {
+            flex: 1; 
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: flex-start;
+
+        }
+
+        #firstBlock,
+        #thirdBlock{
+            background-color: #e4e4e431;
+        }
+
+        #firstBlock {
+            display: flex;
+            flex-direction: column; 
+            font-weight: 400;
+        }
+
+        #secondBlock{
+            padding-top: 5px;
+            box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        #firstBlock p{
+            /* align-items: flex-start; */
+            margin-top: auto; 
+            font-size: 20px;
+            padding: 0 10% 5% 5%;
+        }   
+
+        #thirdBlock p{
+            font-size: 18px;
+            margin-top: 30px;
+            margin-left: 40px;
+        }   
+
+        a {
+            color: black; 
+        }
+
+        #thirdBlock a {
+            color: #f1b14b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .row{
+            display: flex;
+            padding: 15px 0px 0px 50px;
+            gap: 100px
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+
+        .form-row input[type='text'],
+        .form-row input[type='email'],
+        .form-row input[type='tel'] {
+            background-color: #FFFFFF;
+            border: 1px solid #D6D9DC;
+            border-radius: 4px;
+            padding: 7px;
+            width: 250px;
+            /* font-size: 14px; */
+        }
+
+        .form-row label {
+           text-transform: uppercase;
+           font-size: 12px;
+           color: #3a3a3af9;
+        }
+
+        .form p{
+            padding-top: 10px;
+            padding-left: 50px;
+            font-size: 20px;
+        }
+        
+        input:focus {
+            border: 1px solid #478dee !important; /* Change the color and thickness as needed */
+            outline: none; 
+            box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .form-row input.warning-active{
+            border: 1px solid #D55C5F;
+            color: #D55C5F;
+            box-shadow: none; 
+        }
+
+       
+
+        .button{
+            font-size: 18px;
+            font-weight: 600px;
+            color: white;
+            background-color: #f1b14b;
+            border: 1px black;
+            border-radius: 7px;
+            padding: 5px;
+            position: relative;
+            margin-top: 30px;
+            margin-left: 40px;
+            top: 0;
+            left: 0;
+            width: 230px;
+            height: 50px;
+            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s, transform 0.1s;
+
+
+        }
+
+        button:hover {
+            background-color: #eba128;
+        }
+
+        button:active {
+            transform: scale(0.98); 
+            transform: translateY(2px);
+        }
+
+
+
+
+        .validation-message,
+        .error{
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+            color: red; /* Цвет по умолчанию */
+        }
+
+
+       
+        /* #repeat-topic-row.valid input, #topic-row.valid input {
+            border: 2px solid green; 
+        } */
+
+        #repeat-topic-row.valid .validation-message, #topic-row.valid .validation-message {
+            color: green; 
+        }
+
+        /* #repeat-topic-row.invalid input, #topic-row.invalid input {
+            border: 2px solid red; 
+        } */
+
+        #repeat-topic-row.invalid .validation-message, #topic-row.invalid .validation-message {
+            color: red; 
+        }
+
+
+    </style>
+</head>
+<body>
+<div class = "container">
+    <div class="leftBlock">
+        <img src="susan-wilkinson-oTfyd9h-UWY-unsplash.jpg" alt="abstract image with psychodelic colours to set atmosphere" class = "image">
+        <div class="caption">Photo by <a href="https://unsplash.com/@susan_wilkinson" target="_blank" rel="noopener noreferrer">Susan Wilkinson</a> on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>            </div>
+        <div id="logoBlock"> 
+                <img src="odin-lined.png" alt="odin-logo" id= "logo"> 
+                <p> ODIN </p>
+        </div>
+    </div>
+    <div class="rightBlock">
+        <div class = "block" id="firstBlock"> 
+            <p>Interuniversity conference “Actual issues of sociological science: theory, methodology and practice” is held annually by the Faculty of Humanities and Social Sciences. The initiators and participants are students, postgraduate students and young professors of the Department of Sociology of Eggman University. The theme of the event covers the theory and methodology of sociology, including the practical results of research.  
+            <br><br>
+            You <em>know</em> you don't want it</p> 
+        </div>
+        <div class = "block" id="secondBlock"> 
+            <form action='' method='get' class='form'>
+                <p>Still want to speak at our fake conference? Fill out this form.</p>
+                <div class = "row">
+                    <div class = "form-row">
+                        <label for="firstName">First Name </label>
+                        <input id="firstName" type="text" name="firstName" required />
+                    </div>
+    
+                    <div class = "form-row">
+                        <label for="lastName">Last Name </label>
+                        <input id="lastName" type="text" name="lastName" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class = "form-row">
+                        <label for="email">Email </label>
+                        <input id="email" type="email" name="email" required>
+                        <span class="error" aria-live="polite"></span>
+                        
+                    </div>
+        
+                    <div class = "form-row">
+                        <label for="phone">Phone </label>
+                        <input id="phone" type="tel" name="phone" required >
+                        <span class="error" aria-live="polite"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-row" id="topic-row">
+                        <label for="topic">Paper topic <span aria-label="required">*</span></label>
+                        <input id="topic" type="text" name="topic" required >
+                        <span class="validation-message"></span> 
+                    </div>
+                
+                    <div class="form-row" id="repeat-topic-row">
+                        <label for="repeatTopic">Repeat paper topic <span aria-label="required">*</span></label>
+                        <input id="repeatTopic" type="text" name="repeatTopic" required oninput="checkTopicsMatch()" >
+                        <span class="validation-message"></span> 
+                    </div>
+                </div> 
+        </div>
+        <div class = "block" id="thirdBlock"> 
+        <button class="button">Create Account</button> 
+        <p>Already registered? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer"> Log in </a></p>
+    </div>
+</form>
+    
+</div>  
+</body>
+</html>
+
+<script>
+function checkTopicsMatch() {
+    const topic = document.querySelector("#topic").value;
+    const repeatTopic = document.querySelector("#repeatTopic").value;
+    const formRows = [document.querySelector("#topic-row"), document.querySelector("#repeat-topic-row")];
+    const messages = [document.querySelector("#topic + .validation-message"), document.querySelector("#repeatTopic + .validation-message")];
+
+    // Если оба поля не пустые
+    if (topic && repeatTopic) {
+        const isValid = topic === repeatTopic;
+        
+        // Обновляем статусы для обоих полей
+        formRows.forEach(row => row.classList.toggle('valid', isValid));
+        formRows.forEach(row => row.classList.toggle('warning-active', !isValid));
+
+        // Для первого поля не показываем сообщение
+        messages[0].textContent = '';
+
+        // Для второго поля показываем сообщение
+        messages[1].textContent = isValid ? 'Topics match' : 'Topics do not match';
+        messages[1].style.color = isValid ? 'green' : 'red';
+    } else {
+        // Если хотя бы одно поле пустое
+        messages.forEach(msg => msg.textContent = '');
+        formRows.forEach(row => row.classList.remove('valid', 'invalid'));
+    }
+}
+
+document.querySelector("#topic").addEventListener("input", checkTopicsMatch);
+document.querySelector("#repeatTopic").addEventListener("input", checkTopicsMatch);
+
+
+const email = document.querySelector('#email');
+const phone = document.querySelector('#phone');
+
+const errorSpanEmail = document.querySelector('#email + .error');
+const errorSpanPhone = document.querySelector('#phone + .error');
+
+email.addEventListener('input', () => {
+    if (!email.validity.valid) { // Если поле невалидно
+        email.classList.add('warning-active'); // Добавляем класс
+        errorSpanEmail.textContent = 'Please enter a valid email address'; // Отображаем ошибку
+    } else {
+        email.classList.remove('warning-active'); // Убираем класс
+        errorSpanEmail.textContent = ''; // Убираем ошибку
+    }
+});
+
+phone.addEventListener('input', () => {
+    if (!phone.validity.valid) { // Если поле невалидно
+        phone.classList.add('warning-active'); // Добавляем класс
+        errorSpanPhone.textContent = 'Please enter a valid phone number'; // Отображаем ошибку
+    } else {
+        phone.classList.remove('warning-active'); // Убираем класс
+        errorSpanPhone.textContent = ''; // Убираем ошибку
+    }
+});
+
+
+// function toggleWarningActive() {
+//     if (!this.checkValidity() && this.value !== '') {
+//         if (this.id === 'email')
+//             emailCheck.classList.add('warning-active');
+//         else if (this.id === 'phone')
+//             phoneCheck.classList.add('warning-active');
+//         this.classList.add('warning-active');
+//     }
+//     else {
+//         if (this.id === 'email')
+//             emailCheck.classList.remove('warning-active');
+//         else if (this.id === 'phone')
+//             phoneCheck.classList.remove('warning-active');
+//         this.classList.remove('warning-active');
+//     }
+// }
+
+
+</script>
